@@ -55,5 +55,4 @@ def checkout(cart, coupons)
   }
 
     exit
-  end
 end
