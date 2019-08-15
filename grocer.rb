@@ -50,6 +50,7 @@ def checkout(cart, coupons)
   apply_clearance(cart)
   p "cart with coupons and clearance applied #{cart}"
   cart.reduce do |memo, key|
+    binding.pry
     p "item/key #{key}"
     p "price/value #{cart[key][:price]}"
     exit
