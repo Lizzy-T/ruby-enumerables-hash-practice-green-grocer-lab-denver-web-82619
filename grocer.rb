@@ -54,8 +54,8 @@ def checkout(cart, coupons)
     cart_total[key] = cart[key][:price]
   end
 p cart_total
-  exit
-  cart_total.reduce do ||
+  cart_total.reduce(n = 0) do |n, memo|
+    binding.pry
   end
-
+exit
 end
