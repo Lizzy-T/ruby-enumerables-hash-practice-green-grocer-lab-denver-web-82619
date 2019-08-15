@@ -43,15 +43,20 @@ def apply_clearance(cart)
 end
 
 def checkout(cart, coupons)
+  p "START +++++++++++++++++++++++++++++++"
+  p "initial #{cart}"
   cart = consolidate_cart(cart)
   apply_coupons(cart, coupons)
   apply_clearance(cart)
+  p "cart with coupons and clearance applied #{cart}"
   cart_total = {}
   cart.each_key do |key|
     cart_total[key] = cart[key][:price]*cart[key][:count]
   end
+p cart_total
+p  total_cost = cart_total.values.sum
   if total_cost > 100
     total_cost = total_cost * (0.9)
   end
-total_cost
+total
 end
