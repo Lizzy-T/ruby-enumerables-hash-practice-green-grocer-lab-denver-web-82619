@@ -54,6 +54,9 @@ def checkout(cart, coupons)
     cart_total[key] = cart[key][:price]*cart[key][:count]
   end
 p cart_total
-p  cart_total.values.sum
+p  total_cost = cart_total.values.sum
+  if total_cost > 100
+    total_cost = total_cost * (0.9)
+  end
 cart_total.values.sum
 end
