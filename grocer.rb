@@ -49,9 +49,11 @@ def checkout(cart, coupons)
   apply_coupons(cart, coupons)
   apply_clearance(cart)
   p "cart with coupons and clearance applied #{cart}"
-  cart.each_key({}) do |memo, key|
-    cart[key][:price]
-    binding.pry
+  cart_total = {}
+  cart.each_key { binding.pry
+    |key|cart_total[cart[key]] = cart[key][:price]
+  }
+
     exit
   end
 end
