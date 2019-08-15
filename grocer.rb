@@ -49,7 +49,7 @@ def checkout(cart, coupons)
   apply_coupons(cart, coupons)
   apply_clearance(cart)
   p "cart with coupons and clearance applied #{cart}"
-  cart.reduce(n = 0) do |n, key, value|
+  cart.reduce(n = 0) do |n, pair|
     binding.pry
     exit
   end
