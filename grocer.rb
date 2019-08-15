@@ -51,8 +51,8 @@ def checkout(cart, coupons)
   p "cart with coupons and clearance applied #{cart}"
   cart_total = {}
   cart.each_key do |key|
-    binding.pry
     cart_total[key] = cart[key][:price]
+    binding.pry
   end
 
     exit
