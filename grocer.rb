@@ -1,15 +1,57 @@
 def consolidate_cart(cart)
-  # code here
+    cart = cart.reduce({}) do |memo, pair|
+    pair.each_value{|value| value[:count] = cart.count(pair)}
+    memo = memo.merge(pair) {|key, v1, v2| v1}
+    memo
+    end
+    cart
 end
 
+
 def apply_coupons(cart, coupons)
-  # code here
+  i = 0
+  while i < coupons.length do
+    coupon_item = coupons[i][:item]
+    if cart[coupon_item] == nil
+      return cart
+    end
+    coupon_num = coupons[i][:num]
+    coupon_each_cost = coupons[i][:cost]/coupon_num
+    cart_item_count = cart[coupon_item][:count]
+    num_item_coupon_applied = ((cart_item_count/coupon_num - 0.5).round)*coupon_num
+    cart_item_left = (cart_item_count%coupon_num)
+    if coupon_num <= cart_item_count
+      cart["#{coupon_item} W/COUPON"] = {price: coupon_each_cost,
+                                  clearance: cart[coupon_item][:clearance],
+                                  count: num_item_coupon_applied
+                                }
+    end
+    (cart_item_left == 0) ? (cart[coupon_item][:count] = 0):(cart[coupon_item][:count] = cart_item_left)
+  i += 1
+  end
+  cart
 end
 
 def apply_clearance(cart)
-  # code here
+  cart.each_key do |key|
+    if cart[key][:clearance]
+        percent_off = (cart[key][:price]*(0.20)).round(2)
+        clearance_price = cart[key][:price] - percent_off
+        cart[key][:price] = clearance_price
+    end
+  end
 end
 
 def checkout(cart, coupons)
-  # code here
+  p "START +++++++++++++++++++++++++++++++"
+  p "initial #{cart}"
+  cart = consolidate_cart(cart)
+  apply_coupons(cart, coupons)
+  apply_clearance(cart)
+  p "cart with coupons and clearance applied #{cart}"
+  cart.reduce do |memo, key|
+    p "item/key #{key}"
+    p "price/value #{cart[key][:price]}"
+    exit
+  end
 end
