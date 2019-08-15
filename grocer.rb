@@ -51,7 +51,8 @@ def checkout(cart, coupons)
   p "cart with coupons and clearance applied #{cart}"
   cart_total = {}
   cart.each_key do |key|
-    cart_total[key] = cart[key][:price]
+    cart_total[key] = cart[key][:price]*cart[key][:count]
+    exit
   end
 p cart_total
 p  cart_total.values.sum
