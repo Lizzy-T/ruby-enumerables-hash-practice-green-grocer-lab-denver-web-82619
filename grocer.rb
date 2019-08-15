@@ -55,5 +55,5 @@ def checkout(cart, coupons)
   end
 p cart_total
 p  cart_total.values.sum
-exit
+cart_total.values.sum
 end
