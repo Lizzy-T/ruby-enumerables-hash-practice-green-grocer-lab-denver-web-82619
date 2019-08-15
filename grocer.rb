@@ -43,8 +43,6 @@ def apply_clearance(cart)
 end
 
 def checkout(cart, coupons)
-  p "START +++++++++++++++++++++++++++++++"
-  p "initial #{cart}"
   cart = consolidate_cart(cart)
   apply_coupons(cart, coupons)
   apply_clearance(cart)
