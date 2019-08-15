@@ -52,7 +52,7 @@ def checkout(cart, coupons)
   cart_total = {}
   cart.each_key do |key|
     binding.pry
-    cart_total[cart[key]] = cart[key][:price]
+    cart_total[key] = cart[key][:price]
   end
 
     exit
