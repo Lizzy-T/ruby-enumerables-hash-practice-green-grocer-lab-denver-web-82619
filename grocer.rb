@@ -54,8 +54,6 @@ def checkout(cart, coupons)
     cart_total[key] = cart[key][:price]
   end
 p cart_total
-  cart_total.reduce(n = 0) do |n, key, value|
-    binding.pry
-  end
+p  cart_total.values.sum
 exit
 end
